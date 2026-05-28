@@ -10,7 +10,6 @@ let isAccessibleMode = false;
 let currentView = "splash";
 let navDestination = "bk6";
 let mapScale = 1;
-let mapIs3D = false;
 let navTimer = null;
 let navDistance = 50;
 let navMaxDistance = 50;
@@ -186,24 +185,15 @@ function setAccessibleMode(on) {
 
 function updateAccessibleUI() {
   const badge = $("#accessible-badge");
-  const mapStage = $("#map-stage");
-  const mapHint = $("#map-accessible-hint");
   const navView = $("#view-navigating");
   const navHint = $("#nav-accessible-hint");
-  const navVisual = $("#nav-visual");
 
   if (badge) badge.classList.toggle("hidden", !isAccessibleMode);
-  if (mapStage) mapStage.classList.toggle("accessible-mode", isAccessibleMode);
-  if (mapHint) {
-    mapHint.classList.toggle("hidden", !isAccessibleMode);
-    if (isAccessibleMode) mapHint.textContent = t("accessibleHint");
-  }
   if (navView) navView.classList.toggle("accessible-mode", isAccessibleMode);
   if (navHint) {
     navHint.classList.toggle("hidden", !isAccessibleMode);
     if (isAccessibleMode) navHint.textContent = t("accessibleHint");
   }
-  if (navVisual) navVisual.classList.toggle("accessible-active", isAccessibleMode);
 }
 
 function updateNavigatingTitle() {
@@ -307,26 +297,7 @@ function goToNavigating(destination) {
   showView("navigating");
 }
 
-function setMapScale(scale) {
-  mapScale = Math.min(2.2, Math.max(0.55, scale));
-  const canvas = $("#map-canvas");
-  if (canvas) canvas.style.transform = `scale(${mapScale})`;
-}
-
-function setMapMode(is3d) {
-  mapIs3D = is3d;
-  const visual = $("#map-visual");
-  const pills = $$(".mode-pill");
-  if (!visual) return;
-
-  visual.classList.toggle("map-buildings--2d", !is3d);
-  visual.classList.toggle("map-buildings--3d", is3d);
-
-  pills.forEach((p) => {
-    const mode = p.getAttribute("data-mode");
-    p.classList.toggle("mode-pill--active", (mode === "3d") === is3d);
-  });
-}
+// Map view removed (3D Map now redirects to Detail)
 
 function openOverlay(id) {
   const el = $(`#overlay-${id}`);
@@ -419,10 +390,11 @@ function bindEvents() {
   $$("[data-nav]").forEach((el) => {
     el.addEventListener("click", () => {
       const target = el.getAttribute("data-nav");
-      if (target === "map") showView("map");
       if (target === "timetable") showView("timetable");
     });
   });
+
+  $("#btn-menu-map")?.addEventListener("click", () => showView("map"));
 
   $("#btn-menu-settings")?.addEventListener("click", () => showView("profile"));
 
@@ -433,11 +405,28 @@ function bindEvents() {
 
   $("#btn-navigating-menu")?.addEventListener("click", () => goToNavigating("bk6"));
 
+  $("#btn-map-settings")?.addEventListener("click", () => showView("profile"));
+
+  const applyMapScale = () => {
+    const canvas = $("#applemap-canvas");
+    if (canvas) canvas.style.transform = `scale(${mapScale})`;
+  };
+
+  const nudgeMapScale = (delta) => {
+    mapScale = Math.min(1.5, Math.max(0.85, +(mapScale + delta).toFixed(2)));
+    applyMapScale();
+  };
+
+  $("#btn-map-zoom-in")?.addEventListener("click", () => nudgeMapScale(0.08));
+  $("#btn-map-zoom-out")?.addEventListener("click", () => nudgeMapScale(-0.08));
+
+  applyMapScale();
+
   const openSidebar = () => {
     renderSidebarHistory();
     openOverlay("sidebar");
   };
-  $("#btn-sidebar-from-search")?.addEventListener("click", openSidebar);
+  // Map view removed, sidebar toggle entry removed with it.
 
   $(".sidebar-close")?.addEventListener("click", () => closeOverlay("sidebar"));
   $("#overlay-sidebar")?.addEventListener("click", (e) => {
@@ -447,23 +436,6 @@ function bindEvents() {
   $("#sidebar-history")?.addEventListener("click", (e) => {
     const li = e.target.closest("li");
     if (!li) return;
-    closeOverlay("sidebar");
-    showView("detail");
-  });
-
-  $("#btn-settings")?.addEventListener("click", () => openOverlay("settings"));
-
-  $("#btn-map-mode")?.addEventListener("click", () => setMapMode(!mapIs3D));
-
-  $("#btn-zoom-in")?.addEventListener("click", () => setMapScale(mapScale + 0.15));
-  $("#btn-zoom-out")?.addEventListener("click", () => setMapScale(mapScale - 0.15));
-
-  $("#btn-map-detail")?.addEventListener("click", () => showView("detail"));
-  $("#btn-map-back")?.addEventListener("click", () => showView("menu", "back"));
-
-  $("#map-search-input")?.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
-    e.preventDefault();
     closeOverlay("sidebar");
     showView("detail");
   });
@@ -522,8 +494,6 @@ function bindEvents() {
     clearSession();
     stopNavTimer();
     resetNavigatingUI();
-    setMapScale(1);
-    setMapMode(false);
     setAccessibleMode(false);
     updateFavoriteUI();
     updateFavoritesList();
@@ -552,8 +522,6 @@ function bindEvents() {
 document.addEventListener("DOMContentLoaded", () => {
   bindEvents();
   initBoot();
-  setMapMode(false);
-  setMapScale(1);
   updateAccessibleUI();
   initNavMotion();
   setNavDotProgress(0);

@@ -151,7 +151,7 @@
             <span class="menu-tile__label" data-i18n="accessibleRoute">Accessible Route</span>
           </button>
 
-          <button type="button" class="menu-tile" data-nav="map">
+          <button type="button" class="menu-tile" id="btn-menu-map">
             <span class="menu-tile__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" class="tile-icon" aria-hidden="true">
                 <path d="M9 18l-5 2V6l5-2l6 2l5-2v14l-5 2l-6-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -194,36 +194,67 @@
         </div>
       </section>
 
-      <!-- 3D MAP -->
-      <section class="view" id="view-map" data-view="map">
-        <div class="map-toolbar">
-          <button type="button" class="map-back glass" id="btn-map-back">
-            <span class="map-back__chev" aria-hidden="true">←</span>
-            <span data-i18n="map3D">3D Map</span>
-          </button>
-          <button type="button" class="map-mode-toggle glass" id="btn-map-mode">
-            <span class="mode-pill mode-pill--active" data-mode="2d">2D</span>
-            <span class="mode-pill" data-mode="3d">3D</span>
-          </button>
-          <button type="button" class="icon-btn glass" id="btn-settings">⚙️</button>
-        </div>
-        <div class="map-search glass">
-          <button type="button" class="icon-btn map-search__menu" id="btn-sidebar-from-search">☰</button>
-          <input type="search" id="map-search-input" data-i18n-placeholder="searchPlaceholder" placeholder="Search buildings..." />
-        </div>
-        <div class="map-stage" id="map-stage">
-          <div class="map-route-line" id="map-route-line"></div>
-          <div class="map-canvas" id="map-canvas">
-            <div class="map-buildings map-buildings--2d" id="map-visual"></div>
-            <div class="map-pin">📍 BK6</div>
+      <!-- 3D MAP — UKM campus render -->
+      <section class="view view--applemap" id="view-map" data-view="map">
+        <div class="applemap-stage">
+          <div class="applemap-canvas" id="applemap-canvas" aria-hidden="true">
+            <img
+              class="applemap-bg"
+              src="assets/ukm-3d-campus-map.png?v=20260528121644"
+              alt=""
+              width="946"
+              height="1024"
+              decoding="async"
+              draggable="false"
+            />
+            <div class="applemap-poi" aria-label="BK6 Classroom">
+              <span class="applemap-poi__halo" aria-hidden="true"></span>
+              <div class="applemap-poi__card">
+                <span class="applemap-poi__pin" aria-hidden="true">
+                  <svg width="16" height="20" viewBox="0 0 18 22" fill="none">
+                    <path d="M9 0C4.58 0 1 3.58 1 8c0 5.25 8 14 8 14s8-8.75 8-14c0-4.42-3.58-8-8-8Z" fill="#FF3B30"/>
+                    <circle cx="9" cy="8" r="3.2" fill="#fff"/>
+                  </svg>
+                </span>
+                <span class="applemap-poi__label">BK6-classroom</span>
+              </div>
+              <span class="applemap-poi__stem" aria-hidden="true"></span>
+            </div>
           </div>
-          <p class="map-accessible-hint hidden" id="map-accessible-hint" data-i18n="accessibleHint"></p>
+
+          <header class="applemap-chrome">
+            <button type="button" class="applemap-chrome__back" data-back="menu" aria-label="Back to menu">
+              <span class="applemap-chrome__chevron" aria-hidden="true">‹</span>
+              <span class="applemap-chrome__title" data-i18n="map3D">3D Map</span>
+            </button>
+            <button type="button" class="applemap-chrome__settings" id="btn-map-settings" aria-label="Settings">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </header>
+
+          <aside class="applemap-zoom" aria-label="Zoom">
+            <button type="button" class="applemap-zoom__btn" id="btn-map-zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" class="applemap-zoom__btn" id="btn-map-zoom-out" aria-label="Zoom out">−</button>
+          </aside>
+
+          <form class="applemap-search" role="search" onsubmit="return false;">
+            <svg class="applemap-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+              <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input
+              type="search"
+              id="map-search-input"
+              class="applemap-search__input"
+              autocomplete="off"
+              data-i18n-placeholder="searchPlaceholder"
+              placeholder="Search buildings..."
+            />
+          </form>
         </div>
-        <div class="map-zoom">
-          <button type="button" class="glass" id="btn-zoom-in">+</button>
-          <button type="button" class="glass" id="btn-zoom-out">−</button>
-        </div>
-        <button type="button" class="fab glass" id="btn-map-detail" data-i18n="viewBK6">View BK6</button>
       </section>
 
       <!-- TIMETABLE -->
