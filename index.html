@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>UKM 3D Campus Navigator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app-root">
+
+      <!-- SPLASH -->
+      <section class="view view--active" id="view-splash" data-view="splash">
+        <div class="splash-bg" aria-hidden="true"></div>
+
+        <div class="splash-top">
+          <img
+            class="ukm-crest-img splash-crest"
+            src="assets/ukm-crest.png"
+            alt="Universiti Kebangsaan Malaysia"
+            width="56"
+            height="56"
+          />
+        </div>
+
+        <div class="splash-body">
+          <div class="splash-hero glass-auth">
+            <h1 class="splash-hero-title">
+              <span data-i18n="splashHeroLine1">3D Campus</span><br />
+              <span data-i18n="splashHeroLine2">Navigation</span><br />
+              <span data-i18n="splashHeroLine3">System</span>
+            </h1>
+          </div>
+          <p class="splash-faculty" data-i18n="facultyName">Faculty of Information Science and Technology, UKM</p>
+        </div>
+
+        <div class="splash-footer">
+          <button type="button" class="splash-cta" id="btn-get-started" data-i18n="getStarted">Get Started</button>
+        </div>
+      </section>
+
+      <!-- LOGIN -->
+      <section class="view" id="view-login" data-view="login">
+        <div class="auth-bg" aria-hidden="true"></div>
+
+        <div class="auth-top">
+          <img
+            class="ukm-crest-img"
+            src="assets/ukm-crest.png"
+            alt="Universiti Kebangsaan Malaysia"
+            width="56"
+            height="56"
+          />
+        </div>
+
+        <div class="auth-center">
+          <div class="auth-title glass-auth">
+            <h1 class="auth-title__text">3D Campus<br/>Navigation<br/>System</h1>
+          </div>
+          <p class="auth-subtitle" data-i18n="facultyName">Faculty of Information Science and Technology, UKM</p>
+
+          <form class="auth-form" id="login-form" autocomplete="off">
+            <label class="sr-only" for="login-username" data-i18n="studentStaffId">Student/Staff ID</label>
+            <div class="auth-input glass-input">
+              <span class="auth-input__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                  <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.6" />
+                  <path d="M8 9h6M8 12h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  <path d="M15.5 8.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 0 0 0-3Z" fill="currentColor" opacity="0.95" />
+                </svg>
+              </span>
+              <input id="login-username" type="text" data-i18n-placeholder="studentStaffId" placeholder="Student/Staff ID" />
+            </div>
+
+            <label class="sr-only" for="login-password" data-i18n="password">Password</label>
+            <div class="auth-input glass-input">
+              <span class="auth-input__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                  <path d="M7 10V8.2A5 5 0 0 1 12 3a5 5 0 0 1 5 5.2V10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  <path d="M6.5 10h11A2.5 2.5 0 0 1 20 12.5v5A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-5A2.5 2.5 0 0 1 6.5 10Z" fill="none" stroke="currentColor" stroke-width="1.6" />
+                  <path d="M12 14v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <input id="login-password" type="password" data-i18n-placeholder="password" placeholder="Password" />
+            </div>
+
+            <button type="button" class="auth-forgot" id="btn-forgot-password" data-i18n="forgotPassword">Forgot Password?</button>
+
+            <button type="submit" class="auth-login-btn" aria-label="Login">
+              <span class="auth-login-btn__icon" aria-hidden="true">▶</span>
+              <span data-i18n="login">Login</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="auth-bottom">
+          <div class="auth-lang glass-lang">
+            <span class="auth-lang__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                <path d="M12 22a10 10 0 1 0 0-20a10 10 0 0 0 0 20Z" fill="none" stroke="currentColor" stroke-width="1.6" />
+                <path d="M2 12h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.9" />
+                <path d="M12 2c3.2 3.4 3.2 16.6 0 20c-3.2-3.4-3.2-16.6 0-20Z" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.9" />
+              </svg>
+            </span>
+            <span class="auth-lang__label" data-i18n="language">Language</span>
+            <span class="auth-lang__sep">:</span>
+            <select id="lang-select-login" class="auth-lang__select" aria-label="Language">
+              <option value="EN">EN</option>
+              <option value="CN">CN</option>
+            </select>
+            <span class="auth-lang__chev" aria-hidden="true">⌄</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section class="view" id="view-menu" data-view="menu">
+        <header class="menu-topbar">
+          <button type="button" class="menu-topbar__icon" id="btn-notifications" data-i18n-aria="notificationBar" aria-label="Notification bar">
+            <svg viewBox="0 0 24 24" class="menu-icon" aria-hidden="true">
+              <path d="M12 22a2.5 2.5 0 0 0 2.45-2H9.55A2.5 2.5 0 0 0 12 22Z" fill="currentColor" opacity="0.95"/>
+              <path d="M18 16V11a6 6 0 0 0-12 0v5l-1.6 1.7A1 1 0 0 0 5.1 19h13.8a1 1 0 0 0 .7-1.7L18 16Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="menu-topbar__title" data-i18n="notificationBar">Notification bar</div>
+          <button type="button" class="menu-topbar__avatar" id="btn-profile" aria-label="Profile">
+            <span class="menu-topbar__avatar-ring" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" class="menu-avatar-icon" aria-hidden="true">
+              <path d="M12 12a4 4 0 1 0-4-4a4 4 0 0 0 4 4Z" fill="currentColor" opacity="0.95"/>
+              <path d="M4.5 20c1.8-3.3 5.1-5 7.5-5s5.7 1.7 7.5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </header>
+
+        <h1 class="menu-page-title" data-i18n="mainMenu">Menu</h1>
+
+        <div class="menu-grid menu-grid--figma">
+          <div class="menu-spacer" aria-hidden="true"></div>
+
+          <button type="button" class="menu-tile" id="btn-accessible-route">
+            <span class="menu-tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="tile-icon tile-icon--accent" aria-hidden="true">
+                <path d="M12 3.2a2.2 2.2 0 1 0 0 4.4a2.2 2.2 0 0 0 0-4.4Z" fill="currentColor"/>
+                <path d="M9.5 21a5.8 5.8 0 1 1 5.8-5.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M10.2 10.3l2.2 1.1l-1 3.9m-2.3-4.2l.9-3.1a1.6 1.6 0 0 1 2.2-1l2.9 1.2m-2 8.2h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="menu-tile__label" data-i18n="accessibleRoute">Accessible Route</span>
+          </button>
+
+          <button type="button" class="menu-tile" data-nav="map">
+            <span class="menu-tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="tile-icon" aria-hidden="true">
+                <path d="M9 18l-5 2V6l5-2l6 2l5-2v14l-5 2l-6-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 4v14M15 6v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="menu-tile__label" data-i18n="map3D">3D Map</span>
+          </button>
+
+          <button type="button" class="menu-tile" data-nav="timetable">
+            <span class="menu-tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="tile-icon" aria-hidden="true">
+                <path d="M7 3v3M17 3v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M5 6h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M3 10h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="menu-tile__label" data-i18n="timetable">Timetable</span>
+          </button>
+
+          <button type="button" class="menu-tile" id="btn-navigating-menu">
+            <span class="menu-tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="tile-icon" aria-hidden="true">
+                <path d="M12 2l4 8l6 2l-6 2l-4 8l-4-8l-6-2l6-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M12 8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="menu-tile__label" data-i18n="navigating">Navigating</span>
+          </button>
+
+          <button type="button" class="menu-tile" id="btn-menu-settings">
+            <span class="menu-tile__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="tile-icon" aria-hidden="true">
+                <path d="M12 15.3a3.3 3.3 0 1 0 0-6.6a3.3 3.3 0 0 0 0 6.6Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19.4 12a7.5 7.5 0 0 0-.1-1l2-1.5l-2-3.4l-2.4 1a7.8 7.8 0 0 0-1.7-1l-.3-2.6H9.1l-.3 2.6a7.8 7.8 0 0 0-1.7 1l-2.4-1l-2 3.4l2 1.5a7.5 7.5 0 0 0 0 2L2.7 14.5l2 3.4l2.4-1a7.8 7.8 0 0 0 1.7 1l.3 2.6h5.8l.3-2.6a7.8 7.8 0 0 0 1.7-1l2.4 1l2-3.4l-2-1.5c.1-.3.1-.7.1-1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="menu-tile__label" data-i18n="setting">Setting</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 3D MAP -->
+      <section class="view" id="view-map" data-view="map">
+        <div class="map-toolbar">
+          <button type="button" class="map-back glass" id="btn-map-back">
+            <span class="map-back__chev" aria-hidden="true">←</span>
+            <span data-i18n="map3D">3D Map</span>
+          </button>
+          <button type="button" class="map-mode-toggle glass" id="btn-map-mode">
+            <span class="mode-pill mode-pill--active" data-mode="2d">2D</span>
+            <span class="mode-pill" data-mode="3d">3D</span>
+          </button>
+          <button type="button" class="icon-btn glass" id="btn-settings">⚙️</button>
+        </div>
+        <div class="map-search glass">
+          <button type="button" class="icon-btn map-search__menu" id="btn-sidebar-from-search">☰</button>
+          <input type="search" id="map-search-input" data-i18n-placeholder="searchPlaceholder" placeholder="Search buildings..." />
+        </div>
+        <div class="map-stage" id="map-stage">
+          <div class="map-route-line" id="map-route-line"></div>
+          <div class="map-canvas" id="map-canvas">
+            <div class="map-buildings map-buildings--2d" id="map-visual"></div>
+            <div class="map-pin">📍 BK6</div>
+          </div>
+          <p class="map-accessible-hint hidden" id="map-accessible-hint" data-i18n="accessibleHint"></p>
+        </div>
+        <div class="map-zoom">
+          <button type="button" class="glass" id="btn-zoom-in">+</button>
+          <button type="button" class="glass" id="btn-zoom-out">−</button>
+        </div>
+        <button type="button" class="fab glass" id="btn-map-detail" data-i18n="viewBK6">View BK6</button>
+      </section>
+
+      <!-- TIMETABLE -->
+      <section class="view view--timetable" id="view-timetable" data-view="timetable">
+        <header class="tt-topbar">
+          <button type="button" class="tt-back" data-back="menu" aria-label="Back">‹</button>
+          <h2 class="tt-topbar__title" data-i18n="timetable">Timetable</h2>
+          <span class="tt-topbar__spacer" aria-hidden="true"></span>
+        </header>
+
+        <div class="tt-stage">
+          <div class="tt-frame">
+            <div class="tt-switches">
+              <div class="tt-switch-card">
+                <div class="tt-switch-row">
+                  <span class="tt-switch-label" data-i18n="autoNav">Auto-navigation</span>
+                  <button type="button" class="toggle toggle--on" data-toggle="autoNav" aria-pressed="true"></button>
+                </div>
+                <div class="tt-switch-row">
+                  <span class="tt-switch-label" data-i18n="reminders">Reminder</span>
+                  <button type="button" class="toggle" data-toggle="reminders" aria-pressed="false"></button>
+                </div>
+              </div>
+
+              <div class="tt-switch-card">
+                <div class="tt-switch-row">
+                  <span class="tt-switch-label" data-i18n="roomChange">Classroom Change</span>
+                  <button type="button" class="toggle toggle--on" data-toggle="roomChange" aria-pressed="true"></button>
+                </div>
+                <div class="tt-switch-row">
+                  <span class="tt-switch-label" data-i18n="notifications">Notification</span>
+                  <button type="button" class="toggle" data-toggle="notifications" aria-pressed="false"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="tt-daily">
+              <div class="tt-daily__title" data-i18n="daily">Daily</div>
+            </div>
+
+            <div class="tt-list">
+              <div class="tt-item">
+                <div class="tt-item__text">
+                  <span class="tt-time">09:00–10:30</span>
+                  <span class="tt-sep"> | </span>
+                  <span class="tt-course">TK3123 UXD</span>
+                  <span class="tt-sep"> | </span>
+                  <span class="tt-place">BK 6 Classroom</span>
+                </div>
+                <div class="tt-item__cta">
+                  <span class="tt-plus" aria-hidden="true">+</span>
+                  <button type="button" class="tt-nav-btn btn-navigate-now" data-destination="bk6" data-i18n="navigateNow">Navigate Now</button>
+                </div>
+              </div>
+
+              <div class="tt-divider" aria-hidden="true"></div>
+
+              <div class="tt-item">
+                <div class="tt-item__text">
+                  <span class="tt-time">11:00–12:30</span>
+                  <span class="tt-sep"> | </span>
+                  <span class="tt-course">Programing</span>
+                  <span class="tt-sep"> | </span>
+                  <span class="tt-place">Lab 2</span>
+                </div>
+                <div class="tt-item__cta">
+                  <span class="tt-plus" aria-hidden="true">+</span>
+                  <button type="button" class="tt-nav-btn btn-navigate-now" data-destination="lab2" data-i18n="navigateNow">Navigate Now</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="tt-footer-card">
+              <div class="tt-footer-card__text" data-i18n="myTimeTable">My Time Table</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATING -->
+      <section class="view" id="view-navigating" data-view="navigating">
+        <header class="nav-topbar">
+          <button type="button" class="nav-back" data-back="menu" aria-label="Back">‹</button>
+          <h2 class="nav-topbar__title" data-i18n="navigating">Navigating</h2>
+          <span class="nav-topbar__spacer" aria-hidden="true"></span>
+        </header>
+
+        <div class="nav-screen">
+          <h1 class="nav-heading" id="nav-destination-title">Navigating to BK6 Classroom</h1>
+          <p class="nav-accessible-hint hidden" id="nav-accessible-hint" data-i18n="accessibleHint"></p>
+
+          <div class="nav-route-card">
+            <div class="nav-route-card__top">
+              <span class="nav-route-card__pin" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="nav-pin-icon" aria-hidden="true">
+                  <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M12 11.2a2.2 2.2 0 1 0 0-4.4a2.2 2.2 0 0 0 0 4.4Z" fill="currentColor" opacity="0.9"/>
+                </svg>
+              </span>
+              <div class="nav-route-card__line" aria-hidden="true"></div>
+            </div>
+
+            <div class="nav-route-card__map" aria-hidden="true">
+              <svg viewBox="0 0 320 220" class="nav-route-svg" aria-hidden="true">
+                <path d="M65 38H255V86H200V180H255" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+                <path d="M65 38H185" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+                <path d="M142 62H104" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+                <path d="M114 52l-18 10l18 10" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M220 90v48" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+                <path d="M210 111l10-16l10 16" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- motion path (invisible): follow the original turning route -->
+                <path id="nav-route-motion" d="M255 180H200V86H255V38H65" fill="none" stroke="transparent" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle id="nav-route-dot" cx="255" cy="180" r="10" fill="#fff" stroke="#111" stroke-width="5"/>
+              </svg>
+            </div>
+
+            <div class="nav-route-card__label" data-i18n="busStation">Bus Station</div>
+          </div>
+
+          <div class="nav-extra" data-i18n="schoolBusMins">School bus: 3 mins</div>
+
+          <p class="nav-status hidden" id="nav-arrived" data-i18n="arrived">You have safely arrived!</p>
+
+          <div class="nav-actions nav-actions--figma">
+            <button type="button" class="nav-btn nav-btn--close" id="btn-nav-close" data-i18n="close">Close</button>
+            <button type="button" class="nav-btn nav-btn--start" id="btn-nav-start" data-i18n="start">Start</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUILDING DETAIL -->
+      <section class="view" id="view-detail" data-view="detail">
+        <header class="detail-header">
+          <button type="button" class="back-btn glass" id="btn-detail-back" aria-label="Back">←</button>
+          <h2 data-i18n="detailTitle">BK6 Classroom</h2>
+          <span class="detail-header__spacer" aria-hidden="true"></span>
+        </header>
+        <div class="detail-hero glass">
+          <img class="detail-photo" src="assets/bk6-building.png" alt="BK6 Building" />
+          <ul class="detail-meta">
+            <li data-i18n="location">Location: BK Building, level 2</li>
+            <li data-i18n="openingHours">Opening Hours: 8:00AM-6:00PM</li>
+            <li data-i18n="accessibility">Accessibility Wheelchair Accessible (Elevator Available)</li>
+          </ul>
+        </div>
+        <div class="detail-actions">
+          <button type="button" class="detail-action glass" id="btn-wheelchair">
+            <span>♿</span>
+            <span data-i18n="wheelchairRoute">Wheelchair Route</span>
+          </button>
+          <button type="button" class="detail-action glass" id="btn-favorite">
+            <span>⭐</span>
+            <span id="favorite-label" data-i18n="saveFavorite">Save to Favorites</span>
+          </button>
+          <button type="button" class="detail-action glass" id="btn-share">
+            <span>📤</span>
+            <span data-i18n="shareLocation">Share Location</span>
+          </button>
+          <button type="button" class="btn btn--primary" id="btn-start-nav-detail" data-i18n="startNavigation">Start Navigation</button>
+        </div>
+        <p class="accessible-badge hidden" id="accessible-badge" data-i18n="accessibleOn">Accessible mode enabled</p>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="view view--profile" id="view-profile" data-view="profile">
+        <header class="profile-topbar">
+          <button type="button" class="profile-back" data-back="menu" aria-label="Back">‹</button>
+          <h2 class="profile-title" data-i18n="myProfile">My Profile</h2>
+          <span class="profile-topbar__spacer" aria-hidden="true"></span>
+        </header>
+
+        <div class="profile-hero">
+          <div class="profile-hero__avatar" aria-hidden="true">
+            <div class="profile-hero__avatar-inner"></div>
+          </div>
+          <div class="profile-hero__info">
+            <div class="profile-hero__line"><span data-i18n="name">Name</span>: <strong>TOTO</strong></div>
+            <div class="profile-hero__line"><span data-i18n="studentId">Student ID</span>: <strong>A2154XX</strong></div>
+          </div>
+        </div>
+
+        <div class="profile-list">
+          <button type="button" class="profile-row" id="btn-lang-settings">
+            <span class="profile-row__dot" aria-hidden="true"></span>
+            <span class="profile-row__label" data-i18n="languageSettings">Language Settings</span>
+            <span class="profile-row__value" id="profile-lang-display">EN</span>
+          </button>
+
+          <button type="button" class="profile-row" id="favorites-section">
+            <span class="profile-row__dot" aria-hidden="true"></span>
+            <span class="profile-row__label" data-i18n="myFavorites">My Favorites</span>
+          </button>
+          <div class="profile-sublist" id="favorites-sublist">
+            <ul class="favorites-list" id="favorites-list">
+              <li class="favorites-empty" data-i18n="noFavorites">No favorites yet</li>
+            </ul>
+          </div>
+
+          <button type="button" class="profile-row" id="btn-help">
+            <span class="profile-row__dot" aria-hidden="true"></span>
+            <span class="profile-row__label" data-i18n="helpFeedback">Help &amp; Feedback</span>
+          </button>
+
+          <button type="button" class="profile-row" id="btn-about">
+            <span class="profile-row__dot" aria-hidden="true"></span>
+            <span class="profile-row__label" data-i18n="aboutUs">About Us</span>
+          </button>
+        </div>
+
+        <div class="profile-logout-wrap">
+          <button type="button" class="profile-logout" id="btn-logout" data-i18n="logout">Log Out</button>
+        </div>
+      </section>
+
+      <!-- OVERLAYS -->
+      <div class="overlay hidden" id="overlay-sidebar">
+        <div class="sidebar glass">
+          <h3 data-i18n="historySearch">History Search</h3>
+          <ul id="sidebar-history"></ul>
+          <button type="button" class="btn btn--ghost sidebar-close" data-i18n="close">Close</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="overlay-notifications">
+        <div class="modal glass">
+          <h3 data-i18n="notifications">Notifications</h3>
+          <ul class="notif-list" id="notif-list"></ul>
+          <button type="button" class="btn btn--ghost modal-close" data-close="notifications" data-i18n="close">Close</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="overlay-forgot">
+        <div class="modal glass modal--forgot">
+          <h3 data-i18n="forgotTitle">忘记密码？</h3>
+          <p data-i18n="forgotBody"></p>
+          <p data-i18n="forgotEmail"></p>
+          <p data-i18n="forgotPhone"></p>
+          <button type="button" class="btn btn--primary modal-close" data-close="forgot" data-i18n="forgotOk">确定</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="overlay-settings">
+        <div class="settings-panel glass">
+          <h3 data-i18n="mapSettings">Map Settings</h3>
+          <div class="switch-row">
+            <span data-i18n="showLabels">Show Labels</span>
+            <button type="button" class="toggle toggle--on" data-setting="labels" aria-pressed="true"></button>
+          </div>
+          <div class="switch-row">
+            <span data-i18n="nightMode">Night Mode</span>
+            <button type="button" class="toggle" data-setting="night" aria-pressed="false"></button>
+          </div>
+          <div class="switch-row">
+            <span data-i18n="traffic">Pedestrian Traffic</span>
+            <button type="button" class="toggle" data-setting="traffic" aria-pressed="false"></button>
+          </div>
+          <button type="button" class="btn btn--ghost modal-close" data-close="settings" data-i18n="close">Close</button>
+        </div>
+      </div>
+
+      <div class="overlay overlay--fullscreen hidden" id="overlay-ar">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80" alt="Campus AR view" />
+        <p class="ar-hint" data-i18n="tapToClose">Tap anywhere to close</p>
+      </div>
+
+      <div class="overlay hidden" id="overlay-help">
+        <div class="modal glass">
+          <h3 data-i18n="helpFeedback">Help &amp; Feedback</h3>
+          <p data-i18n="helpText"></p>
+          <button type="button" class="btn btn--ghost modal-close" data-close="help" data-i18n="close">Close</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="overlay-about">
+        <div class="modal glass">
+          <h3 data-i18n="aboutUs">About Us</h3>
+          <p data-i18n="aboutText"></p>
+          <button type="button" class="btn btn--ghost modal-close" data-close="about" data-i18n="close">Close</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="overlay-lang">
+        <div class="modal glass">
+          <h3 data-i18n="languageSettings">Language Settings</h3>
+          <select id="lang-select-profile" class="lang-select lang-select--block">
+            <option value="EN">English</option>
+            <option value="CN">中文</option>
+          </select>
+          <button type="button" class="btn btn--ghost modal-close" data-close="lang" data-i18n="close">Close</button>
+        </div>
+      </div>
+
+      <div class="toast hidden" id="toast" role="status"></div>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
