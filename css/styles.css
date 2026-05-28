@@ -43,17 +43,33 @@
 
 html,
 body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
   min-height: 100%;
   min-height: 100dvh;
-  margin: 0;
-  padding: 0;
+  min-height: -webkit-fill-available;
   font-family: var(--font);
+  /* Solid fallback under gradient — prevents white iOS/Android safe-area gaps */
+  background-color: var(--color-deep);
   background: var(--gradient-app);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--text-primary);
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+  }
+
+  body {
+    min-height: -webkit-fill-available;
+  }
 }
 
 /* —— Universal glass —— */
@@ -67,12 +83,20 @@ body {
   box-shadow: var(--glass-shadow);
 }
 
-/* —— App root：全屏铺满 —— */
+/* —— App root：全屏铺满（含刘海 / 灵动岛安全区） —— */
 #app-root {
-  position: relative;
+  position: fixed;
+  inset: 0;
+  width: 100%;
   width: 100vw;
+  height: 100%;
   height: 100vh;
+  height: 100dvh;
+  min-height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   overflow: hidden;
+  background-color: var(--color-deep);
   background: var(--gradient-app);
 }
 
@@ -794,15 +818,18 @@ body {
 .view--applemap {
   padding: 0;
   align-items: stretch;
+  background-color: #6d7f68;
   background: #6d7f68;
 }
 
 .applemap-stage {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
   overflow: hidden;
-  background: #6d7f68;
+  background-color: #6d7f68;
 }
 
 .applemap-canvas {
